@@ -17,3 +17,4 @@ Example: "Auth header requires 'Bearer ' prefix with trailing space"
 - `app/page.tsx` redirects to `/feed` — keeps `/` useful without a duplicate landing.
 - AppShell is a client component (owns ChatDrawerProvider + seeder effect). It mounts in the root server layout, so all routes share it and seeding runs exactly once per session.
 - Chat drawer has `topicId` in context so `/feed` can push its current topic before opening the drawer, enabling "This Topic" mode without prop drilling.
+- **BLOCKER 2026-04-16:** `ANTHROPIC_API_KEY` in `~/.zshrc` and in `0students/bryan-yoon2/.env` both return 401 invalid-x-api-key. Need user to supply a live key before features 3-7 can pass verification. Code is built and builds clean; only API auth fails.
