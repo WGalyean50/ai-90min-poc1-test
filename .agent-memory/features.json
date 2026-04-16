@@ -24,7 +24,7 @@
         "Reloading page preserves created topic",
         "Header component rendered in app/layout.tsx with nav links and chat toggle button"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "feed-generation",

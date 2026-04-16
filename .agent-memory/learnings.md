@@ -15,3 +15,5 @@ Example: "Auth header requires 'Bearer ' prefix with trailing space"
 - Tailwind v4 config: `postcss.config.mjs` with `@tailwindcss/postcss` plugin + `@import "tailwindcss";` in globals.css. No `tailwind.config.js` needed.
 - next 15.1.6 has CVE-2025-66478 but this is a localhost POC; not upgrading to stay inside the 60-min budget.
 - `app/page.tsx` redirects to `/feed` — keeps `/` useful without a duplicate landing.
+- AppShell is a client component (owns ChatDrawerProvider + seeder effect). It mounts in the root server layout, so all routes share it and seeding runs exactly once per session.
+- Chat drawer has `topicId` in context so `/feed` can push its current topic before opening the drawer, enabling "This Topic" mode without prop drilling.
