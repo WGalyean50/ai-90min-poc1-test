@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import FeedCard from "@/components/FeedCard";
+import { useChatDrawer } from "@/components/ChatDrawerContext";
 import {
   getFeedItemsForTopic,
   getTopics,
@@ -14,6 +15,7 @@ import {
 import type { FeedItem, Topic } from "@/lib/types";
 
 export default function FeedPage() {
+  const { setTopicId: setDrawerTopicId } = useChatDrawer();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [topicId, setTopicId] = useState<string>("");
   const [items, setItems] = useState<FeedItem[]>([]);
@@ -40,7 +42,8 @@ export default function FeedPage() {
   useEffect(() => {
     if (!topicId) return;
     setItems(getFeedItemsForTopic(topicId));
-  }, [topicId]);
+    setDrawerTopicId(topicId);
+  }, [topicId, setDrawerTopicId]);
 
   async function refresh() {
     if (!currentTopic) return;

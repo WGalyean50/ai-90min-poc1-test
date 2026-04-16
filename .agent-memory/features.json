@@ -63,7 +63,7 @@
         "app/api/chat/route.ts POSTs to claude-sonnet-4-6 with items context",
         "User message + assistant reply render in thread; spinner shown during call"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "create-memo",
