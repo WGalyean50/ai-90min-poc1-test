@@ -102,7 +102,7 @@
         "Empty states render non-broken copy",
         "PRD success criteria 1-7 all demonstrable"
       ],
-      "passes": false
+      "passes": true
     }
   ]
 }
