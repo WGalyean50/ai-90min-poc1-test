@@ -37,7 +37,7 @@
         "Feed cards render with headline, summary, source label, relative timestamp",
         "Skeleton component shown while fetch in flight"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "actions-saved-view",
@@ -50,7 +50,7 @@
         "Read items render visibly dimmed",
         "/saved page lists saved items with topic name badge and un-save button; survives reload"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "chat-drawer",
