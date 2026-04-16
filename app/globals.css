@@ -19,3 +19,13 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+/* Memo typography */
+.prose-memo h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 1rem; }
+.prose-memo h2 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: #1c1917; }
+.prose-memo h3 { font-size: 0.9rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+.prose-memo p { font-size: 0.9rem; line-height: 1.6; color: #3f3f46; margin: 0 0 0.75rem; }
+.prose-memo ul { list-style: disc; padding-left: 1.25rem; margin: 0 0 1rem; }
+.prose-memo li { font-size: 0.9rem; line-height: 1.55; color: #3f3f46; margin: 0.25rem 0; }
+.prose-memo blockquote { border-left: 3px solid #d6d3d1; padding: 0.25rem 0 0.25rem 1rem; margin: 0.75rem 0; font-style: italic; color: #44403c; }
+.prose-memo strong { font-weight: 600; color: #1c1917; }

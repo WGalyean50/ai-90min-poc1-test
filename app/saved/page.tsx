@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import FeedCard from "@/components/FeedCard";
+import MemoButton from "@/components/MemoButton";
 import {
   getFeedItems,
   getTopics,
@@ -58,7 +59,7 @@ export default function SavedPage() {
             The items you flagged as worth returning to.
           </p>
         </div>
-        {/* Create Memo button arrives in next phase */}
+        {saved.length > 0 && <MemoButton items={saved} topics={topics} />}
       </div>
 
       <div className="mt-8 space-y-4">

@@ -76,7 +76,7 @@
         "Copy button writes to navigator.clipboard",
         "Download button triggers download of .md file"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "daily-brief-signal",
