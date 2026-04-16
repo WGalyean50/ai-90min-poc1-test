@@ -1,0 +1,108 @@
+{
+  "features": [
+    {
+      "id": "next-scaffold",
+      "description": "Next.js 15 app scaffolded with TypeScript + Tailwind + App Router; @anthropic-ai/sdk installed; .env.local has ANTHROPIC_API_KEY; app boots on localhost:3000 with a blank landing.",
+      "priority": 1,
+      "verification": [
+        "package.json exists with next ^15, react ^19, typescript, tailwindcss deps",
+        "@anthropic-ai/sdk appears in package.json dependencies",
+        ".env.local exists at project root with ANTHROPIC_API_KEY=sk-...",
+        "app/layout.tsx and app/page.tsx exist",
+        "`npm run build` completes without error (or `next dev` starts and serves 200 at /)"
+      ],
+      "passes": false
+    },
+    {
+      "id": "topics-crud",
+      "description": "User can create, list, and delete Topics on /topics. Topics persist in localStorage. Default 'LLM Infrastructure' topic seeded on first load. Header nav links Feed/Saved/Topics with chat toggle.",
+      "priority": 2,
+      "verification": [
+        "lib/storage.ts exports typed helpers for topics, feedItems, interactions with try/catch around JSON.parse",
+        "Types Topic, FeedItem, Interaction exported from lib/types.ts",
+        "/topics page renders list, inline create form (name, description, frequency), delete button",
+        "Reloading page preserves created topic",
+        "Header component rendered in app/layout.tsx with nav links and chat toggle button"
+      ],
+      "passes": false
+    },
+    {
+      "id": "feed-generation",
+      "description": "User selects a topic on /feed, clicks Refresh, and sees 5 LLM-generated feed cards within ~5 seconds. Items have headline, 2-3 sentence summary, plausible source, timestamp. Loading skeleton shown during generation.",
+      "priority": 3,
+      "verification": [
+        "app/api/generate-feed/route.ts exists; POSTs to Claude Haiku 4.5 (claude-haiku-4-5-20251001)",
+        "Route accepts topicId, topicName, topicDescription, savedItems, dismissedItems; returns JSON array of 5 items",
+        "/feed page has topic dropdown and Refresh button",
+        "Feed cards render with headline, summary, source label, relative timestamp",
+        "Skeleton component shown while fetch in flight"
+      ],
+      "passes": false
+    },
+    {
+      "id": "actions-saved-view",
+      "description": "User can mark Read, Save, or Dismiss on each feed card. Visual states: read=dimmed, saved=filled bookmark, dismissed=removed. /saved page lists saved items with topic badge and un-save action; persists across reload.",
+      "priority": 4,
+      "verification": [
+        "Each FeedCard renders three action buttons (Read, Save, Dismiss)",
+        "Clicking Save writes an Interaction with kind='saved' to localStorage",
+        "Clicking Dismiss removes card from feed and records interaction",
+        "Read items render visibly dimmed",
+        "/saved page lists saved items with topic name badge and un-save button; survives reload"
+      ],
+      "passes": false
+    },
+    {
+      "id": "chat-drawer",
+      "description": "Right-side chat drawer toggled from header. Two modes (This Topic / Everything). Starter chips. POST /api/chat uses Claude Sonnet 4.6 with relevant items as context. Returns single response (no streaming).",
+      "priority": 5,
+      "verification": [
+        "ChatDrawer component with slide-in from right, toggle state",
+        "Two-mode selector (topic vs everything)",
+        "At least 3 starter chips that prefill input",
+        "app/api/chat/route.ts POSTs to claude-sonnet-4-6 with items context",
+        "User message + assistant reply render in thread; spinner shown during call"
+      ],
+      "passes": false
+    },
+    {
+      "id": "create-memo",
+      "description": "Create Memo button on /saved opens a modal with Sonnet-generated markdown (Title, TL;DR bullets, Themes, Pull Quotes w/ source, Next Actions). Copy Markdown and Download .md buttons work.",
+      "priority": 6,
+      "verification": [
+        "Create Memo button visible on /saved",
+        "app/api/memo/route.ts returns structured markdown string from claude-sonnet-4-6",
+        "Modal renders markdown (react-markdown or inline converter)",
+        "Copy button writes to navigator.clipboard",
+        "Download button triggers download of .md file"
+      ],
+      "passes": false
+    },
+    {
+      "id": "daily-brief-signal",
+      "description": "Daily Brief card (paragraph) and Signal card (cross-topic pattern) render at top of /feed. Both backed by Sonnet. Cached in localStorage with 6-hour TTL. Each has a small refresh button.",
+      "priority": 7,
+      "verification": [
+        "DailyBrief component at top of /feed; calls /api/brief; shows single paragraph",
+        "Signal component below DailyBrief; calls /api/signal; shows cross-topic pattern",
+        "Both routes use claude-sonnet-4-6",
+        "Responses cached in localStorage with timestamp; reused within 6h",
+        "Refresh button forces regeneration"
+      ],
+      "passes": false
+    },
+    {
+      "id": "polish-verify",
+      "description": "Final pass: layout clean on desktop, all three routes plus chat drawer functional, PRD success criteria checked, quiet minimal aesthetic.",
+      "priority": 8,
+      "verification": [
+        "No TypeScript errors (`npx tsc --noEmit` clean, or Next build passes)",
+        "/, /feed, /saved, /topics all return 200",
+        "Color palette restrained (neutral + 1 accent), consistent spacing",
+        "Empty states render non-broken copy",
+        "PRD success criteria 1-7 all demonstrable"
+      ],
+      "passes": false
+    }
+  ]
+}
