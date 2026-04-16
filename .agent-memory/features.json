@@ -11,7 +11,7 @@
         "app/layout.tsx and app/page.tsx exist",
         "`npm run build` completes without error (or `next dev` starts and serves 200 at /)"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "topics-crud",

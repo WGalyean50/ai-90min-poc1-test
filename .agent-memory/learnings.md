@@ -12,3 +12,6 @@ Example: "Auth header requires 'Bearer ' prefix with trailing space"
 - Next.js 15 App Router is scoped; use server route handlers (`app/api/*/route.ts`) to keep API key off client.
 - Use `localStorage` guarded with `typeof window !== 'undefined'` checks to avoid SSR errors.
 - Wrap localStorage JSON parse in try/catch and reset to default on corruption (per PRD risk mitigation).
+- Tailwind v4 config: `postcss.config.mjs` with `@tailwindcss/postcss` plugin + `@import "tailwindcss";` in globals.css. No `tailwind.config.js` needed.
+- next 15.1.6 has CVE-2025-66478 but this is a localhost POC; not upgrading to stay inside the 60-min budget.
+- `app/page.tsx` redirects to `/feed` — keeps `/` useful without a duplicate landing.
