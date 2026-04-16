@@ -89,7 +89,7 @@
         "Responses cached in localStorage with timestamp; reused within 6h",
         "Refresh button forces regeneration"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "polish-verify",

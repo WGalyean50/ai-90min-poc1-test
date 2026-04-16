@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import FeedCard from "@/components/FeedCard";
+import DailyBrief from "@/components/DailyBrief";
+import Signal from "@/components/Signal";
 import { useChatDrawer } from "@/components/ChatDrawerContext";
 import {
   getFeedItemsForTopic,
@@ -139,6 +141,11 @@ export default function FeedPage() {
           {error}
         </div>
       )}
+
+      <div className="mt-6 space-y-3">
+        <DailyBrief />
+        <Signal />
+      </div>
 
       <div className="mt-8 space-y-4">
         {loading && items.length === 0 && <FeedSkeleton />}
